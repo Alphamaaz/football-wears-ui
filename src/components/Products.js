@@ -16,7 +16,9 @@ const Products = () => {
   
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/product");
+        const response = await axios.get(
+          "https://my-football-app-4edb1671b434.herokuapp.com/api/product"
+        );
         setProducts(response.data); // Assuming the API returns an array of products
       } catch (err) {
         console.log(err)

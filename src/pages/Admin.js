@@ -18,7 +18,9 @@ const Admin = () => {
   // Fetch all products
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/product");
+      const response = await axios.get(
+        "https://my-football-app-4edb1671b434.herokuapp.com/api/product"
+      );
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -32,13 +34,16 @@ const Admin = () => {
       if (editingProductId) {
         // Update product
         await axios.put(
-          `http://localhost:3001/api/product/${editingProductId}`,
+          `https://my-football-app-4edb1671b434.herokuapp.com/api/product/${editingProductId}`,
           formData
         );
         setEditingProductId(null);
       } else {
         // Add new product
-        await axios.post("http://localhost:3001/api/product", formData);
+        await axios.post(
+          "https://my-football-app-4edb1671b434.herokuapp.com/api/product",
+          formData
+        );
       }
       setFormData({
         title: "",
@@ -59,7 +64,9 @@ const Admin = () => {
   // Delete a product
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/api/product/${id}`);
+      await axios.delete(
+        `https://my-football-app-4edb1671b434.herokuapp.com/api/product/${id}`
+      );
       fetchProducts();
     } catch (error) {
       console.error("Error deleting product:", error);

@@ -26,7 +26,7 @@ const AddUser = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/adduser",
+        "https://my-football-app-4edb1671b434.herokuapp.com/api/user",
         formData
       );
       setMessage("User added successfully!");

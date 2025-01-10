@@ -17,7 +17,6 @@ const CheckOut = () => {
 
   return (
     <div className="checkout-container">
-      {/* User Information Section */}
       <div className="checkout-left">
         <h2>Checkout</h2>
         <form className="checkout-form" onSubmit={handleSubmit}>
@@ -30,6 +29,7 @@ const CheckOut = () => {
               required
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <input
@@ -39,6 +39,7 @@ const CheckOut = () => {
               required
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="address">Shipping Address</label>
             <textarea
@@ -47,6 +48,7 @@ const CheckOut = () => {
               required
             ></textarea>
           </div>
+
           <div className="form-group">
             <label>Payment Method</label>
             <div className="payment-options">
@@ -73,9 +75,10 @@ const CheckOut = () => {
               </label>
             </div>
           </div>
+
+        
         </form>
       </div>
-
       {/* Summary Section */}
 
       <div className="checkout-summary">

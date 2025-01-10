@@ -12,10 +12,9 @@ const Logout = () => {
 // const token = localStorage.getItem("token");
 
 axios
-  .get("http://localhost:3001/api/user/login", {
+  .get("https://my-football-app-4edb1671b434.herokuapp.com/api/user/login", {
     headers: {
       auth_token: localStorage.getItem("token"), // Send the token in the Authorization header
-      
     },
   })
   .then((response) => {

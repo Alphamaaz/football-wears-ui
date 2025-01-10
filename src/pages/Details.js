@@ -22,7 +22,9 @@ const Details = () => {
   useEffect(() => {
     // Fetch product details using productId
     axios
-      .get(`http://localhost:3001/api/product/${Id}`)
+      .get(
+        `https://my-football-app-4edb1671b434.herokuapp.com/api/product/${Id}`
+      )
       .then((response) => setProduct(response.data))
 
       .catch((error) =>

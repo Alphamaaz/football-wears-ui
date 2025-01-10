@@ -14,7 +14,7 @@ import {
 import "../styles/Register.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../redux/cartRedux";
+// import { addProduct } from "../redux/cartRedux";
 import { login } from "../redux/loginRedux";
 
 
@@ -30,7 +30,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/user/login",
+        "https://my-football-app-4edb1671b434.herokuapp.com/api/user/login",
         {
           email: email,
           password: password,
@@ -38,12 +38,12 @@ function Login() {
       );
 
       const userData = {
-        token: response.headers.auth_token,
+        token: "djffdl",
         user: response.data.user,
       };
 
       // Store token in localStorage
-      // localStorage.setItem("token", userData.token);
+      localStorage.setItem("token", userData.token);
 
       // Dispatch login action
       dispatch(login(userData));

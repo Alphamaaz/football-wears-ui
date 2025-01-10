@@ -31,19 +31,19 @@ function Register() {
     e.preventDefault()
 
      axios
-       .post("http://localhost:3001/api/user",{
-        name:userName,
-        email:email,
-        password:password,
-        repeat_password:confirmPassword
+       .post("https://my-football-app-4edb1671b434.herokuapp.com/api/user", {
+         name: userName,
+         email: email,
+         password: password,
+         repeat_password: confirmPassword,
        })
        .then((response) => {
          console.log(response.data); // handle the response data
-          toast.success("Logged in successfully!");
+         toast.success("Logged in successfully!");
          navigate("/login");
        })
        .catch((error) => {
-         console.error( error.response.data); // handle errors
+         console.error(error.response.data); // handle errors
        });
 
   }

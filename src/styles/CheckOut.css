@@ -1,25 +1,33 @@
-/* Checkout Container */
+/* General styles for the container */
 .checkout-container {
   display: flex;
-  gap: 20px;
-  padding: 2rem 3rem;
   flex-wrap: wrap;
+  gap: 10px; /* Reduced gap between left and right sections */
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
 }
 
-/* Left Section - Form */
-.checkout-left {
-  flex: 2;
+.checkout-left,
+.checkout-summary {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
-.check-data{
-    display: flex;
-    gap: 1rem;
-    margin: 1rem;
+
+/* Left Section (Form) */
+.checkout-left {
+  flex: 1 1 48%; /* Adjusted width to reduce the gap */
+  max-width: 48%; /* Matches the flex width */
 }
 
 .checkout-left h2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-bottom: 20px;
-  color: #333;
+  color: #333333;
 }
 
 .checkout-form .form-group {
@@ -28,85 +36,116 @@
 
 .checkout-form label {
   display: block;
-  margin-bottom: 5px;
   font-weight: bold;
-  color: #333;
+  margin-bottom: 5px;
+  color: #555555;
 }
 
 .checkout-form input,
 .checkout-form textarea {
   width: 100%;
   padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
   font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 }
 
 .checkout-form textarea {
-  resize: none;
+  resize: vertical;
+  height: 100px;
 }
 
 .payment-options {
   display: flex;
-  flex-direction: column;
   gap: 10px;
+  margin-top: 10px;
 }
 
-/* Right Section - Summary */
+.payment-options label {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #555555;
+}
+
+.payment-options input {
+  margin-right: 5px;
+}
+
+/* Summary Section */
 .checkout-summary {
-  flex: 1;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1 1 48%; /* Adjusted width to reduce the gap */
+  max-width: 48%; /* Matches the flex width */
 }
 
 .checkout-summary h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  color: #333333;
   margin-bottom: 15px;
-  color: #333;
-    margin-top: 4rem;
-
-}
-
-.summary-details {
-  margin-bottom: 20px;
-  /* margin-top: 4rem; */
+  border-bottom: 2px solid #cccccc;
+  padding-bottom: 5px;
 }
 
 .summary-details p {
-  font-size: 1rem;
-  margin: 10px 0;
   display: flex;
   justify-content: space-between;
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #444444;
+}
+
+.summary-details strong {
+  font-size: 1.1rem;
 }
 
 .place-order-btn {
+  display: block;
   width: 100%;
-  padding: 10px 0;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: #007bff;
-  color: white;
+  padding: 12px;
+  background-color: #28a745;
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
 .place-order-btn:hover {
-  background-color: #0056b3;
-  color: #fff;
+  background-color: #218838;
+}
+
+/* Product Items */
+.check-data {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 0;
+}
+
+.product-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.check-data p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555555;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
   .checkout-container {
     flex-direction: column;
-    padding: 1rem 2rem;
-
   }
 
+  .checkout-left,
   .checkout-summary {
-    margin-top: 20px;
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 }
