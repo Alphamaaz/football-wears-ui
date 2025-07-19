@@ -1,46 +1,49 @@
 import React, { useState } from "react";
 import "../styles/CheckOut.css";
 import { useSelector } from "react-redux";
+
 const CheckOut = () => {
   const [paymentMethod, setPaymentMethod] = useState("creditCard");
-
+  const cart = useSelector((state) => state.cart);
+ console.log(cart)
   const handlePaymentChange = (e) => {
     setPaymentMethod(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Order Placed Successfully!");
+    alert("✅ Order Placed Successfully!");
   };
-
-   const cart = useSelector((state) => state.cart);
 
   return (
     <div className="checkout-container">
+      {/* LEFT SIDE: Form */}
       <div className="checkout-left">
         <h2>Checkout</h2>
         <form className="checkout-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Full Name</label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter your full name"
-              required
-            />
+          <div className="row">
+            <div className="form-group half-width">
+              <label htmlFor="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div className="form-group half-width">
+              <label htmlFor="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
           </div>
 
-          <div className="form-group">
-            <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-
-          <div className="form-group">
+          <div className="form-group full-width">
             <label htmlFor="address">Shipping Address</label>
             <textarea
               id="address"
@@ -50,9 +53,9 @@ const CheckOut = () => {
           </div>
 
           <div className="form-group">
-            <label>Payment Method</label>
+            <label>PAYMENT METHOD</label>
             <div className="payment-options">
-              <label>
+              <label className="radio-inline">
                 <input
                   type="radio"
                   name="paymentMethod"
@@ -63,7 +66,7 @@ const CheckOut = () => {
                 Credit Card
               </label>
 
-              <label>
+              <label className="radio-inline">
                 <input
                   type="radio"
                   name="paymentMethod"
@@ -75,41 +78,39 @@ const CheckOut = () => {
               </label>
             </div>
           </div>
-
-        
         </form>
       </div>
-      {/* Summary Section */}
 
+      {/* RIGHT SIDE: Order Summary */}
       <div className="checkout-summary">
-        {cart.products.map((item) => (
-          <div key={item} className=" check-data">
-            <img src={item.img} alt="product" className="product-img" />
-            <p>{item.title}</p>
-            <p>
-              Rs.
-              {parseFloat(
-                item.sellingPrice
-                  .replace(/[^0-9.]/g, "")
-                  .replace(/\.(?=.*\.)/g, "")
-              ) * item.quantity}
-            </p>
-          </div>
-        ))}
         <h3>Order Summary</h3>
+
+        <div className="checkout-items">
+          {cart.products.map((item, index) => (
+            <div key={index} className="check-data">
+              <img src={item.image} alt={item.title} className="product-img" />
+              <div className="item-details">
+                <p className="item-title">{item.title}</p>
+                <p className="item-price">Rs. {item.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <div className="summary-details">
           <p>
             Items Total: <span>{cart.quantity}</span>
           </p>
           <p>
-            Shipping Fee: <span>Rs.0.00</span>
+            Shipping Fee: <span>Rs. 0</span>
           </p>
-          <p>
+          <p className="total-line">
             <strong>
-              Total: <span>Rs.{cart.total}</span>
+              Total: <span>Rs. {cart.total}</span>
             </strong>
           </p>
         </div>
+
         <button
           type="submit"
           className="place-order-btn"

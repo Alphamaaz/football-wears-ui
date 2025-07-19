@@ -41,7 +41,7 @@ const handleRemove = (productId) => {
             <tr key={index}>
               {/* Product Image */}
               <td>
-                <img src={item.img} alt="product" className="product-img" />
+                <img src={item.image} alt="product" className="product-img" />
               </td>
 
               {/* Product Title */}
@@ -56,11 +56,7 @@ const handleRemove = (productId) => {
               {/* Total Price */}
               <td>
                 Rs.
-                {parseFloat(
-                  item.sellingPrice
-                    .replace(/[^0-9.]/g, "")
-                    .replace(/\.(?=.*\.)/g, "")
-                ) * item.quantity}
+                {item.price}
               </td>
 
               {/* Remove Button */}
@@ -69,7 +65,7 @@ const handleRemove = (productId) => {
                   color="danger"
                   size="sm"
                   className="remove-btn"
-                  onClick={() => handleRemove(item._id)}
+                  onClick={() => handleRemove(item.id)}
                 >
                   <FontAwesomeIcon icon={faTrash} />
                 </MDBBtn>

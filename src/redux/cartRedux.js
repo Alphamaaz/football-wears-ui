@@ -9,11 +9,14 @@ const cartSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
-      const price = parseFloat(
-        action.payload.sellingPrice
-          .replace(/[^0-9.]/g, "") // Remove non-numeric characters except "."
-          .replace(/\.(?=.*\.)/g, "") // Prevent multiple dots
-      );
+     const rawPrice = action.payload.price; // e.g., "2,350.00"
+
+     // Remove commas and decimal part before parsing
+     const cleanedPrice = rawPrice.replace(/,/g, "").split(".")[0]; // "2350"
+
+     // Convert to number
+     const price = parseFloat(cleanedPrice);
+
 
       const qty = action.payload.quantity || 0;
 
@@ -25,17 +28,20 @@ const cartSlice = createSlice({
       const productId = action.payload.id;
 
       const productIndex = state.products.findIndex(
-        (product) => product._id === productId
+        (product) => product.id === productId
       );
 
       if (productIndex > -1) {
         const removedProduct = state.products[productIndex];
 
-        const price = parseFloat(
-          removedProduct.sellingPrice
-            .replace(/[^0-9.]/g, "")
-            .replace(/\.(?=.*\.)/g, "")
-        );
+      const rawPrice = action.payload.price; // e.g., "2,350.00"
+
+      // Remove commas and decimal part before parsing
+      const cleanedPrice = rawPrice.replace(/,/g, "").split(".")[0]; // "2350"
+
+      // Convert to number
+      const price = parseFloat(cleanedPrice);
+
         const qty = removedProduct.quantity || 0;
 
         // Update total and quantity

@@ -78,29 +78,7 @@ const Footer = () => {
               </p>
             </MDBCol>
 
-            <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Products</h6>
-              <p>
-                <Link to="#" className="text-reset">
-                  Shirts
-                </Link>
-              </p>
-              <p>
-                <Link to="#" className="text-reset">
-                  Sports Shoes
-                </Link>
-              </p>
-              <p>
-                <Link to="#" className="text-reset">
-                  Accessories
-                </Link>
-              </p>
-              <p>
-                <Link to="#" className="text-reset">
-                  Equipment
-                </Link>
-              </p>
-            </MDBCol>
+            
 
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Useful Links</h6>
@@ -115,12 +93,12 @@ const Footer = () => {
                 </Link>
               </p>
               <p>
-                <Link to="#" className="text-reset">
+                <Link to="/faq" className="text-reset">
                   FAQ
                 </Link>
               </p>
               <p>
-                <Link to="#" className="text-reset">
+                <Link to="/support" className="text-reset">
                   Support
                 </Link>
               </p>

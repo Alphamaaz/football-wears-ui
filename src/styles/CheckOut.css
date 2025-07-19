@@ -1,52 +1,43 @@
-/* General styles for the container */
 .checkout-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Reduced gap between left and right sections */
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #f9f9f9;
-  font-family: Arial, sans-serif;
+  gap: 2rem;
+  padding: 2rem;
+  background: #f8f9fa;
 }
 
 .checkout-left,
 .checkout-summary {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  flex: 1;
+  min-width: 300px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
-/* Left Section (Form) */
-.checkout-left {
-  flex: 1 1 48%; /* Adjusted width to reduce the gap */
-  max-width: 48%; /* Matches the flex width */
-}
-
-.checkout-left h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #333333;
+.checkout-left h2,
+.checkout-summary h3 {
+  margin-bottom: 1.5rem;
+  color: #333;
 }
 
 .checkout-form .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .checkout-form label {
+  font-weight: 600;
   display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #555555;
+  margin-bottom: 0.5rem;
 }
 
 .checkout-form input,
 .checkout-form textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   font-size: 1rem;
 }
 
@@ -55,97 +46,116 @@
   height: 100px;
 }
 
-.payment-options {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
 .payment-options label {
-  display: flex;
-  align-items: center;
-  font-size: 0.9rem;
-  color: #555555;
+  display: inline;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
-.payment-options input {
-  margin-right: 5px;
-}
-
-/* Summary Section */
 .checkout-summary {
-  flex: 1 1 48%; /* Adjusted width to reduce the gap */
-  max-width: 48%; /* Matches the flex width */
+  border-left: 1px solid #e0e0e0;
 }
 
-.checkout-summary h3 {
-  font-size: 1.4rem;
-  color: #333333;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #cccccc;
-  padding-bottom: 5px;
+.checkout-items {
+  margin-bottom: 1.5rem;
 }
 
-.summary-details p {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-  font-size: 1rem;
-  color: #444444;
-}
-
-.summary-details strong {
-  font-size: 1.1rem;
-}
-
-.place-order-btn {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  background-color: #28a745;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.place-order-btn:hover {
-  background-color: #218838;
-}
-
-/* Product Items */
 .check-data {
   display: flex;
   align-items: center;
-  gap: 10px;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 10px 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
 }
 
 .product-img {
   width: 60px;
   height: 60px;
-  border-radius: 8px;
   object-fit: cover;
+  border-radius: 8px;
+  margin-right: 1rem;
 }
 
-.check-data p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #555555;
+.item-details {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Responsive Styles */
+.item-title {
+  font-weight: 500;
+}
+
+.item-price {
+  color: #555;
+}
+
+.summary-details p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.summary-details .total-line {
+  border-top: 1px solid #ccc;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.place-order-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+.place-order-btn:hover {
+  background-color: #218838;
+}
+/* Two column row */
+.checkout-form .row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.checkout-form .half-width {
+  flex: 1 1 48%;
+}
+
+.checkout-form .full-width {
+  flex: 1 1 100%;
+}
+
+/* Inline radio buttons */
+.payment-options {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.radio-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 @media (max-width: 768px) {
   .checkout-container {
     flex-direction: column;
+    padding: 1rem;
   }
 
   .checkout-left,
   .checkout-summary {
-    flex: 1 1 100%;
-    max-width: 100%;
+    width: 100%;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useState } from "react";
 import "../styles/Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,57 +9,26 @@ import {
 import { MDBBadge } from "mdb-react-ui-kit";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import axios from "axios";
+import { products } from "./data"; // import local data
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
+  const token = useSelector((state) => state.auth.token);
+  const quantity = useSelector((state) => state.cart.quantity);
+  const isLoggedIn = !!token;
 
-  useEffect(() => {
-    // console.log(products)
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("https://my-football-app-4edb1671b434.herokuapp.com/api/product");
-        setProducts(response.data); // Assuming the API returns an array of products
-        console.log(products);
-      } catch (err) {
-       console.log(err)
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
-   
-
-    const token = useSelector((state) => state.auth.token); // Redux selector for token
-
-    useEffect(() => {
-      setIsLoggedIn(!!token); // Update local state when token changes
-    }, [token]);
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsLoggedIn(false);
     closeMenu();
   };
 
-  const quantity = useSelector((state) => state.cart.quantity);
-
-  // Handle search input changes
   const handleSearch = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
@@ -99,6 +68,7 @@ const Navbar = () => {
         <div className="navbar-logo">
           <h1 className="logo-text">Football Wears</h1>
         </div>
+
         <div className="navbar-search">
           <input
             type="text"
@@ -108,24 +78,25 @@ const Navbar = () => {
           />
           <FontAwesomeIcon
             icon={faSearch}
-            style={{ color: "#E53935" }}
             className="icon"
+            style={{ color: "#E53935" }}
           />
           {filteredProducts.length > 0 && (
             <div className="search-suggestions">
               {filteredProducts.map((product) => (
                 <div
-                  key={product._id}
+                  key={product.id}
                   className="suggestion-item"
-                  onClick={() => handleSuggestionClick(product._id)}
+                  onClick={() => handleSuggestionClick(product.id)}
                 >
-                  <img src={product.img} />
+                  <img src={product.image} alt={product.title} />
                   {product.title.slice(0, 20)}
                 </div>
               ))}
             </div>
           )}
         </div>
+
         <div className={`navbar-links ${isOpen ? "open" : ""}`}>
           <NavLink
             to="/"

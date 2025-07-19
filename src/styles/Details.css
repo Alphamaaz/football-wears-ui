@@ -1,136 +1,166 @@
-/* Details Section Styling */
+/* Container */
 .details-container {
-    height: auto; /* Make it flexible instead of fixed height */
-    width: 100vw;
-    display: flex;
-    flex-wrap: wrap; /* Enables wrapping for responsiveness */
-    padding: 3.5rem 0.5rem; /* Adjusted padding for spacing */
-    gap: 2rem; /* Gap between left and right sections */
-    background-color: #f9f9f9; /* Light background */
-    box-sizing: border-box; /* Include padding in height/width calculations */
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f9f9f9;
+  padding: 3rem 1rem;
+  gap: 2rem;
+  box-sizing: border-box;
 }
 
-/* Left Section */
+/* Left: Image Section */
 .left {
-    flex: 1; /* Occupies half width in large screens */
-    
-    display: flex; /* Centers the image */
-    justify-content: center; /* Horizontal centering */
-    align-items: center; /* Vertical centering */
-    height: 100%;
+  flex: 1 1 400px; /* grow, shrink, base width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 .left img {
-    width: 100%; /* Responsive image */
-    max-width: 500px; /* Limit the maximum width */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px; /* Add rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Right Section */
+/* Right: Details Section */
 .right {
-    flex: 1; /* Occupies half width in large screens */
-    display: flex;
-     height: 100%;
-    flex-direction: column; /* Stack content vertically */
-    /* justify-content: center; /* Center vertically */
-    gap: 1rem; 
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
+/* Title & Reviews */
 .right h1 {
-    font-size: 2.5rem; /* Larger font size for heading */
-    color: #333; /* Dark text color */
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    margin: 0; /* Remove default margin */
+  font-size: 2rem;
+  margin: 0;
+  color: #333;
+}
+.review-stars {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.star {
+  color: #FFD700;
+  font-size: 1.2rem;
+}
+.review-count {
+  font-size: 0.9rem;
+  color: #888;
 }
 
+/* Pricing */
+.price-div {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+.originl-price {
+  text-decoration: line-through;
+  color: #777;
+}
+.sal-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007b00;
+}
+.sale {
+  background: #0056ff;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
 
-
-.price-div{
-    display: flex;
-    gap: 1rem;
-    flex-direction: row;
-    margin: 1rem 0rem;
+/* Pickers */
+.size-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-.price-div span{
-    margin: 10px;
-
+.size-selector span {
+  font-size: 1rem;
+  color: #555;
+  width: 100%;
 }
-.originl-price{
-    font-size: 20px;
-    color: #7b7878;
-    text-decoration: line-through;
-    letter-spacing: 2px;
+.size-button {
+  padding: 8px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
-.sal-price{
-    font-size: 20px;
-    color: #007b00;
-    letter-spacing: 2px;
-    font-weight: bold;
-}
-.sale{
-    background-color:  #0056ff;
-    color: white;
-    padding: 3px 15px;
-    font-size: 14px;
-    
-}
-.size-selector{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10px;
-}
-  
-.size-selector span{
-display: block;
-font-size: 16px;
-color: #7b7878;
-/* margin-bottom: 5px; */
-
-
-}
-.size-button{
-    outline: none;
-    margin-left: 1.2rem;
-    padding: 5px 22px;
-    border-radius: 15px;
-    border: 0.5px solid black;
-    background-color: #fff;
-     cursor: pointer;
-    transition: all 0.3s ease;
-    /* flex: 1; */
-    text-align: center;
-    margin-top: 15px;
-
-}
+.size-button:hover { transform: translateY(-2px); }
 .size-button.active {
-    background-color: #1e3462; /* Bluish background */
-    color: white; /* White text */
+  background: #1e3462;
+  color: #fff;
+  border-color: #1e3462;
 }
 
+/* Buttons */
+.button-dev {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
+/* Description Box */
+.product-description {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.product-description h3 {
+  color: #1e3462;
+  margin-top: 0;
+}
 
+/* Media Queries */
 
+/* Tablet */
+@media (max-width: 992px) {
+  .details-container {
+    justify-content: center;
+  }
+  .right h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
-    .size-button {
-        padding: 8px 16px; /* Smaller padding */
-        font-size: 0.9rem; /* Reduce font size */
-        flex: 1 1 calc(20% - 10px); /* Two buttons per row with gap */
-        margin-top: 20px;
-    }
-    .right h1{
-        font-size: 1.5rem;
-    }
-    .button-dev{
-        justify-content: center;
-    }
+  .details-container {
+    padding: 2rem 0.5rem;
+  }
+  .left, .right {
+    flex: 1 1 100%;
+  }
+  .price-div {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .size-selector {
+    gap: 8px;
+  }
+  .size-button {
+    padding: 6px 16px;
+    font-size: 0.9rem;
+  }
 }
 
+/* Small mobile */
 @media (max-width: 480px) {
-    .size-button {
-        padding: 6px 12px; /* Even smaller padding */
-        font-size: 0.8rem; /* Smaller font size */
-        flex: 1 1 calc(30% - 10px); /* One button per row */
-    }
+  .right h1 {
+    font-size: 1.5rem;
+  }
+  .sal-price {
+    font-size: 1.2rem;
+  }
+  .size-button {
+    padding: 5px 12px;
+    font-size: 0.85rem;
+  }
 }
