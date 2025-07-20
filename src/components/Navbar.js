@@ -5,7 +5,10 @@ import {
   faSearch,
   faCartPlus,
   faShippingFast,
+  faBars,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+
 import { MDBBadge } from "mdb-react-ui-kit";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -137,9 +140,10 @@ const Navbar = () => {
         </div>
 
         <button className="hamburger" onClick={toggleMenu}>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+          <FontAwesomeIcon
+            icon={isOpen ? faTimes : faBars}
+            className="hamburger-icon"
+          />
         </button>
 
         <div className="cart-button">
