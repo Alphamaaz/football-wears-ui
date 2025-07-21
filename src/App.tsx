@@ -13,7 +13,6 @@ import Footer from './components/Footer';
 import AboutUs from './pages/AboutUs';
 import Cart from './pages/Cart';
 import CheckOut from './pages/CheckOut';
-import Admin from './pages/Admin';
 import FAQ from './pages/FAQ';
 import Support from './pages/Support';
 
@@ -25,7 +24,6 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<AboutUs />} />

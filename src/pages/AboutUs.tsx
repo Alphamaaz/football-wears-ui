@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/About.css";
 import Image from '../images/about.jpg'
-const AboutUs = () => {
+const AboutUs: React.FC = () => {
   return (
     <div className="about-container">
       <div className="about-content">

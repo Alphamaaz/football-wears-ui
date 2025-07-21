@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
-
-
 
 import {
   MDBBtn,
@@ -10,43 +8,40 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
-  
 } from "mdb-react-ui-kit";
 
 import "../styles/Register.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Register Component
-function Register() {
+const Register: React.FC = () => {
+  const [userName, setUserName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
-  const [userName,setUserName]=useState()
-  const [email,setEmail]=useState()
-  const [password,setPassword]=useState()
-  const [confirmPassword,setConfirmPassword]=useState()
-  
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleSubmit=(e)=>{
-    e.preventDefault()
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-     axios
-       .post("https://my-football-app-4edb1671b434.herokuapp.com/api/user", {
-         name: userName,
-         email: email,
-         password: password,
-         repeat_password: confirmPassword,
-       })
-       .then((response) => {
-         console.log(response.data); // handle the response data
-         toast.success("Logged in successfully!");
-         navigate("/login");
-       })
-       .catch((error) => {
-         console.error(error.response.data); // handle errors
-       });
-
-  }
+    axios
+      .post("https://my-football-app-4edb1671b434.herokuapp.com/api/user", {
+        name: userName,
+        email,
+        password,
+        repeat_password: confirmPassword,
+      })
+      .then((response) => {
+        console.log(response.data);
+        toast.success("Registered successfully!");
+        navigate("/login");
+      })
+      .catch((error: AxiosError) => {
+        console.error("Error:", error);
+        toast.error("Registration failed!");
+      });
+  };
 
   return (
     <>
@@ -75,15 +70,14 @@ function Register() {
                 onChange={(e) => setUserName(e.target.value)}
                 value={userName}
               />
-
               <MDBInput
                 wrapperClass="mb-4"
                 label="Your Email"
                 size="lg"
                 id="form2"
                 type="email"
-                value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
               <MDBInput
                 wrapperClass="mb-4"
@@ -91,8 +85,8 @@ function Register() {
                 size="lg"
                 id="form3"
                 type="password"
-                value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                value={password}
               />
               <MDBInput
                 wrapperClass="mb-4"
@@ -100,17 +94,11 @@ function Register() {
                 size="lg"
                 id="form4"
                 type="password"
-                value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confirmPassword}
               />
-              {/* <div className="d-flex flex-row justify-content-center mb-4">
-            <MDBCheckbox
-              name="flexCheck"
-              id="flexCheckDefault"
-              label="I agree to all statements in Terms of Service"
-            />
-          </div> */}
-              <MDBBtn className="mb-4 w-100 gradient-custom-4" size="lg">
+
+              <MDBBtn className="mb-4 w-100 gradient-custom-4" size="lg" type="submit">
                 Register
               </MDBBtn>
             </form>
@@ -120,6 +108,6 @@ function Register() {
       <ToastContainer />
     </>
   );
-}
+};
 
 export default Register;

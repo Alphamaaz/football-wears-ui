@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import "../styles/CheckOut.css";
 import { useSelector } from "react-redux";
+import {RootState} from "../redux/store";
 
-const CheckOut = () => {
-  const [paymentMethod, setPaymentMethod] = useState("creditCard");
-  const cart = useSelector((state) => state.cart);
- console.log(cart)
-  const handlePaymentChange = (e) => {
+const CheckOut:React.FC = () => {
+  const [paymentMethod, setPaymentMethod] = useState<string>("creditCard");
+  const cart = useSelector((state:RootState) => state.cart);
+ 
+  const handlePaymentChange = (e:React.ChangeEvent<HTMLInputElement >) => {
     setPaymentMethod(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:React.InputEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("✅ Order Placed Successfully!");
   };
@@ -114,7 +115,7 @@ const CheckOut = () => {
         <button
           type="submit"
           className="place-order-btn"
-          onClick={handleSubmit}
+          
         >
           Place Order
         </button>

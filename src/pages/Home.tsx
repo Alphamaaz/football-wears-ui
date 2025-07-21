@@ -3,7 +3,7 @@ import Hero from '../components/Hero'
 import Products from '../components/Products'
 import WhyUs from '../components/WhyUs';
 
-const Home = () => {
+const Home:React.FC = () => {
   return (
     <>
       <Hero />

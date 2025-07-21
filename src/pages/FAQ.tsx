@@ -29,10 +29,10 @@ const faqData = [
   },
 ];
 
-const FAQ = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+const FAQ:React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState<null | number>(null);
 
-  const toggleFAQ = (index) => {
+  const toggleFAQ = (index:number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Quantity.css";
-
-const Quantity = ({onQuantityChange}) => {
-  const [quantity, setQuantity] = useState(1);
+interface QuantityProps{
+   onQuantityChange: (quantity: number) => void;
+}
+const Quantity:React.FC<QuantityProps>= ({onQuantityChange}) => {
+  const [quantity, setQuantity] = useState<number>(1);
   const increment = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
@@ -18,16 +20,7 @@ const Quantity = ({onQuantityChange}) => {
       onQuantityChange(newQuantity); // Notify parent of new quantity
     }
   }
-  // const increment = () => {
-  //   setQuantity(quantity + 1); // Increment quantity
-  // };
-
-  // const decrement = () => {
-  //   if (quantity > 1) {
-  //     setQuantity(quantity - 1); // Decrement quantity
-  //   }
-  // };
-
+ 
   return (
     <div>
       <p>Quantity</p>

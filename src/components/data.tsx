@@ -1,4 +1,22 @@
- export const products = [
+ interface ProductDetail {
+   id: number;
+   image: string;
+   title: string;
+   price: string;
+   originalPrice: string;
+   category: string;
+   descripion: string;
+ }
+
+  interface Product {
+  image: string;
+  title: string;
+  price: string;
+  originalPrice: string;
+  category: string;
+  id: number;
+}
+ export const products:Product[] = [
    {
      image:
        "https://alnoorsports.com/cdn/shop/files/rn-image_picker_lib_temp_f4222e67-4086-4501-a7ed-1bfc9df85211.png?v=1734893718&width=940",
@@ -182,10 +200,7 @@
    },
  ];
 
-
-
-
-export const productDetails = {
+export const productDetails: Record<number, ProductDetail> = {
   1: {
     image:
       "https://alnoorsports.com/cdn/shop/files/rn-image_picker_lib_temp_f4222e67-4086-4501-a7ed-1bfc9df85211.png?v=1734893718&width=940",

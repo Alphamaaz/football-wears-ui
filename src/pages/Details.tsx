@@ -10,14 +10,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { productDetails } from "../components/data";
 
-const Details = () => {
-  const [activeSize, setActiveSize] = useState('SMALL');
-  const [activeSleeve, setActiveSleeve] = useState("HALF SLEEVE");
-  const [quantity, setQuantity] = useState(1);
+const Details:React.FC = () => {
+  const [activeSize, setActiveSize] = useState<string>('SMALL');
+  const [activeSleeve, setActiveSleeve] = useState<string>("HALF SLEEVE");
+  const [quantity, setQuantity] = useState<number>(1);
   const navigation = useNavigate()
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const product = productDetails[parseInt(id)];
+  const { id } = useParams<{id:string}>(); 
+const product = productDetails[Number(id)];
 
 
   if (!product) {
@@ -25,16 +25,16 @@ const Details = () => {
   }
 // this functions are handling the size and sleeve slected
 
-  const handleSizeButtonClick = (size) => {
+  const handleSizeButtonClick = (size:string) => {
     setActiveSize(size); // Set the active button's size
   };
-  const handleSleeveButtonClick = (sleeve) => {
+  const handleSleeveButtonClick = (sleeve:string) => {
     setActiveSleeve(sleeve); // Set the active button's size
   };
 
 // this function is getting the total quantity of the item 
 
-   const handleQuantityChange = (newQuantity) => {
+   const handleQuantityChange = (newQuantity:number) => {
      setQuantity(newQuantity);
     
    };

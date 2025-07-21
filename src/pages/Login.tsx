@@ -18,14 +18,14 @@ import { useDispatch } from "react-redux";
 import { login } from "../redux/loginRedux";
 
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login: React.FC=()=> {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   
 
   const navigate = useNavigate();
  const dispatch = useDispatch()
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -54,7 +54,7 @@ function Login() {
       } else {
         navigate("/");
       }
-    } catch (error) {
+    } catch (error:any) {
       const errorMessage =
         error.response?.data?.message || "An error occurred!";
       toast.error(errorMessage);

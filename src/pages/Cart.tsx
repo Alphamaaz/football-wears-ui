@@ -6,16 +6,17 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import {  useDispatch, useSelector } from "react-redux";
 import { removeProduct } from "../redux/cartRedux";
+import {AppDispatch, RootState} from "../redux/store";
 
-
-const Cart = () => {
+const Cart:React.FC = () => {
   
   const navigation = useNavigate()
-  const cart = useSelector(state=>state.cart)
+  const cart = useSelector((state:RootState) => state.cart);
  
-const dispatch = useDispatch();
+const dispatch = useDispatch<AppDispatch>();
 
-const handleRemove = (productId) => {
+
+const handleRemove = (productId:number) => {
   dispatch(removeProduct({ id: productId }));
 };
    

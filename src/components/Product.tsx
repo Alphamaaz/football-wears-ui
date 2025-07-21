@@ -2,8 +2,22 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Product.css";
 import { useNavigate } from "react-router-dom";
+interface ProductType{
+  id:number,
+  title:string,
+  image:string,
+  price:string,
+  category:string,
+  originalPrice:string,
+}
 
-const Product = ({ data, category }) => {
+interface ProductProps{
+  data:ProductType[],
+  category:string
+}
+
+
+const Product:React.FC<ProductProps> = ({ data, category }) => {
   const navigation = useNavigate();
 
   return (
@@ -19,7 +33,7 @@ const Product = ({ data, category }) => {
               navigation(`/details/${item.id}`);
             }}
           > 
-
+           
             <div className="image-container">
               <img  src={item.image} alt={item.title} className="product-image" />
               <div className="card-badge">Sale</div>

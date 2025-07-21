@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import "../styles/contact.css"; // Importing the CSS file
-
-function Contact() {
-  const [formData, setFormData] = useState({
+interface ContactType{
+  name:string,
+  email:string,
+  message:string
+}
+const Contact:React.FC = ()=> {
+  const [formData, setFormData] = useState<ContactType>({
     name: "",
     email: "",
     message: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -16,7 +20,7 @@ function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form Data Submitted: ", formData);
     // You can handle form submission here (e.g., send data to a server)

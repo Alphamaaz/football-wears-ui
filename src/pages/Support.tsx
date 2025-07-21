@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import "../styles/Support.css";
 
-const Support = () => {
-  const [formData, setFormData] = useState({
+interface SupportType{
+  name:string,
+  email:string,
+  orderId:string,
+  issue:string
+}
+const Support:React.FC = () => {
+  const [formData, setFormData] = useState<SupportType>({
     name: "",
     email: "",
     orderId: "",
     issue: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement| HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Support Request Submitted:", formData);
     alert("Thanks for contacting support! We'll get back to you shortly.");

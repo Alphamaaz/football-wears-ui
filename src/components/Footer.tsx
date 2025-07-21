@@ -23,7 +23,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-const Footer = () => {
+const Footer:React.FC = () => {
   return (
     <MDBFooter
       style={{ backgroundColor: "#D3D3D3", color: "white" }}

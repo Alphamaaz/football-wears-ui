@@ -1,14 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
+
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface ProductInterface {
+  id: number;
+  title: string;
+  image: string;
+  price: string; // assuming price is stored as a string like "2,350.00"
+  quantity: number;
+  activeSize:string,
+  activeSleeve:string
+}
+interface CartState{
+  products:ProductInterface[],
+  quantity:number,
+  total:number
+}
+const initialState: CartState = {
+  products: [],
+  quantity: 0,
+  total: 0,
+};
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    products: [],
-    quantity: 0,
-    total: 0,
-  },
+initialState,
   reducers: {
-    addProduct: (state, action) => {
+    addProduct: (state, action: PayloadAction<ProductInterface>) => {
      const rawPrice = action.payload.price; // e.g., "2,350.00"
 
      // Remove commas and decimal part before parsing
@@ -37,15 +54,15 @@ const cartSlice = createSlice({
       const rawPrice = action.payload.price; // e.g., "2,350.00"
 
       // Remove commas and decimal part before parsing
-      const cleanedPrice = rawPrice.replace(/,/g, "").split(".")[0]; // "2350"
+      // const cleanedPrice = rawPrice.replace(/,/g, "").split(".")[0]; // "2350"
 
       // Convert to number
-      const price = parseFloat(cleanedPrice);
+      // const price = parseFloat(cleanedPrice);
 
         const qty = removedProduct.quantity || 0;
 
         // Update total and quantity
-        state.total -= price * qty;
+        state.total -= rawPrice * qty;
         state.quantity -= 1;
 
         // Remove the product

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import "../styles/Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,15 +13,28 @@ import { MDBBadge } from "mdb-react-ui-kit";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { products } from "./data"; // import local data
-
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState([]);
+interface Product{
+  id:number,
+  title:string,
+  image:string
+}
+// Define RootState for Redux selector
+interface RootState {
+  auth: {
+    token: string | null;
+  };
+  cart: {
+    quantity: number;
+  };
+}
+const Navbar:React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   const navigate = useNavigate();
-  const token = useSelector((state) => state.auth.token);
-  const quantity = useSelector((state) => state.cart.quantity);
+  const token = useSelector((state:RootState) => state.auth.token);
+  const quantity = useSelector((state:RootState) => state.cart.quantity);
   const isLoggedIn = !!token;
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -32,7 +45,7 @@ const Navbar = () => {
     closeMenu();
   };
 
-  const handleSearch = (e) => {
+  const handleSearch = (e:ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setSearchQuery(query);
 
@@ -46,7 +59,7 @@ const Navbar = () => {
     }
   };
 
-  const handleSuggestionClick = (productId) => {
+  const handleSuggestionClick = (productId:number) => {
     navigate(`/details/${productId}`);
     setSearchQuery("");
     setFilteredProducts([]);
